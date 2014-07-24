@@ -18,6 +18,11 @@ class EbayClient::Api < ActiveSupport::ProxyObject
     create_methods if configuration.preload?
   end
 
+  def token(token)
+    @configuration.set_token(token)
+    self
+  end
+
   def dispatch name, body
     request = ::EbayClient::Request.new self, name, body
 
